@@ -4,7 +4,7 @@ import com.nimikash.driver.DriverManager;
 import com.nimikash.utils.DynamicXpathUtils;
 import org.openqa.selenium.By;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
     private String loginBtn = "//android.widget.TextView[contains(@text,'%replaceable%')]";
     private String randomBtn = "//android.widget.TextView[contains(@text,'%s') and @id='%s']";
