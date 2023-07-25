@@ -1,6 +1,8 @@
 package com.nimikash.pages;
 
 import com.nimikash.driver.DriverManager;
+import com.nimikash.reports.ExtentLogger;
+import com.nimikash.reports.ExtentManager;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.android.AndroidTouchAction;
@@ -22,6 +24,7 @@ public class BasePage {
         explicitWait(element);
         element.click();
         System.out.println(elementName + "is clicked successfully");
+        ExtentLogger.pass(elementName + "is clicked successfully");
     }
 
     protected void click(By by, String elementName){
