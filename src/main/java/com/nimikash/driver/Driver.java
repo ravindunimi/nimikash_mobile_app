@@ -11,6 +11,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
 import static com.nimikash.driver.DriverManager.*;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
@@ -23,7 +25,9 @@ public final class Driver {
             String modevalue = PropertyUtils.getValue("mode");
             WebDriver driver = DriverFactory.get(Modes.valueOf(modevalue.toUpperCase()));
             setDriver(driver);
+            DriverManager.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
+
     }
     public static void quitDriver() {
         if (Objects.nonNull(DriverManager.getDriver())) {

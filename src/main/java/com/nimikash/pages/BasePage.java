@@ -13,6 +13,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -20,30 +21,60 @@ import java.util.List;
 
 public class BasePage {
 
-    protected void click(MobileElement element, String elementName){
-        explicitWait(element);
-        element.click();
-        System.out.println(elementName + "is clicked successfully");
-        ExtentLogger.pass(elementName + "is clicked successfully");
+    private Select getSelectWebElement(By by) {
+        return new Select(DriverManager.getDriver().findElement(by));
     }
-
-    protected void click(By by, String elementName){
-        click((MobileElement) DriverManager.getDriver().findElement(by),elementName);
-    }
-
-    protected void click(String locatorType, String value, String elementName){
-        if(locatorType.equalsIgnoreCase("xpath")){
-            click(By.xpath(value),elementName);
-        }
-        else if(locatorType.equalsIgnoreCase("id")){
-            click(By.id(value),elementName);
+    protected void wait(By by, int milliSeconds) {
+        try {
+            DriverManager.getDriver().findElement(by).wait(milliSeconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
-
-    protected void chooseItemAndClick(List<MobileElement> list, String menu){
-        MobileElement mobileElement = list.parallelStream().filter(e -> e.getText().contains(menu)).findFirst().get();
-        click(mobileElement, menu);
+    protected void click(By by, String elementNameForReport) {
+        DriverManager.getDriver().findElement(by).click();
+        ExtentLogger.pass(elementNameForReport + " - clicked Successfully.");
     }
+    protected void clear(By by, String elementNameForReport) {
+        DriverManager.getDriver().findElement(by).clear();
+        ExtentLogger.pass(elementNameForReport + " - cleared Successfully.");
+    }
+
+    protected void sendKeys(By by, String value, String elementNameForReport) {
+        DriverManager.getDriver().findElement(by).sendKeys(value);
+        ExtentLogger.pass(elementNameForReport + " - '" + value + "' sent successfully.");
+    }
+
+    protected String getText(By by, String elementNameForReport) {
+        String text = DriverManager.getDriver().findElement(by).getText();
+        ExtentLogger.pass(elementNameForReport + " - '" + text + "' obtained successfully.");
+        return text;
+    }
+
+//    protected void click(MobileElement element, String elementName){
+//        explicitWait(element);
+//        element.click();
+//        System.out.println(elementName + "is clicked successfully");
+//        ExtentLogger.pass(elementName + "is clicked successfully");
+//    }
+//
+//    protected void click(By by, String elementName){
+//        click((MobileElement) DriverManager.getDriver().findElement(by),elementName);
+//    }
+//
+//    protected void click(String locatorType, String value, String elementName){
+//        if(locatorType.equalsIgnoreCase("xpath")){
+//            click(By.xpath(value),elementName);
+//        }
+//        else if(locatorType.equalsIgnoreCase("id")){
+//            click(By.id(value),elementName);
+//        }
+//    }
+//
+//    protected void chooseItemAndClick(List<MobileElement> list, String menu){
+//        MobileElement mobileElement = list.parallelStream().filter(e -> e.getText().contains(menu)).findFirst().get();
+//        click(mobileElement, menu);
+//    }
 
     private void explicitWait(MobileElement element) {
         new WebDriverWait(DriverManager.getDriver(),5)
@@ -61,8 +92,11 @@ public class BasePage {
             int scrollEnd = screenHeightEnd.intValue();
             int center = (int) (dimensions.width * 0.5);
             new AndroidTouchAction((PerformsTouchActions) DriverManager.getDriver())
-                    .press(PointOption.point(center, scrollStart)).waitAction(WaitOptions.waitOptions(Duration.ofSeconds(2))).
-                    moveTo(PointOption.point(center, scrollEnd)).release().perform();
+                    .press(PointOption.point(center, scrollStart)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(500)))
+                    .moveTo(PointOption.point(center, scrollEnd)).release().perform();
+        }
+        if(!DriverManager.getDriver().findElements(by).isEmpty()){
+//            DriverManager.getDriver().findElements(by).click();
         }
     }
 

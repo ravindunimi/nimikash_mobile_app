@@ -20,19 +20,9 @@ import static com.nimikash.driver.Driver.quitDriver;
 
 public class BaseTest {
 
-    @BeforeSuite
-    public void setUpTest() {
-        ExtentReport.initReports();
-    }
-
-    @AfterSuite
-    public void tearDownSuite() {
-        ExtentReport.tearDownReports();
-    }
 
     @BeforeMethod
     public void setUp(Method m) throws MalformedURLException {
-        ExtentReport.createTest(m.getName());
         Driver.initDriver();
     }
 

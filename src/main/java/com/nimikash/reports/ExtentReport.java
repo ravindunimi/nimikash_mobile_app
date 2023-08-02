@@ -12,7 +12,7 @@ public class ExtentReport {
 
     public static void initReports(){
 
-        if (Objects.isNull(ExtentManager.getExtentTest())) {
+        if (Objects.isNull(extent)) {
             extent = new ExtentReports();
             ExtentSparkReporter spark = new ExtentSparkReporter(System.getProperty("user.dir") + "/index.html");
 
@@ -24,7 +24,7 @@ public class ExtentReport {
     }
 
     public static void tearDownReports() {
-        if(Objects.isNull(ExtentManager.getExtentTest())) {
+        if(Objects.isNull(extent)) {
             extent.flush();
             ExtentManager.unload();
         }

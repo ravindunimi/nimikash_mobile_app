@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
+    <listeners>
+        <listener class-name="com.nimikash.listeners.ListenersClass"/>
+    </listeners>
     <test verbose="2" preserve-order="true" name="C:/Users/94771/Documents/Mobile Automation/NimiKashMobileApp">
         <classes>
-            <class name="com.nimikash.test.AppConfig">
-                <methods>
-                    <include name="launchApp"/>
-                </methods>
-            </class>
+            <class name="com.nimikash.test.LoginTests"/>
         </classes>
     </test>
 </suite>
