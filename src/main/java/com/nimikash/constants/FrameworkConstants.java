@@ -16,7 +16,7 @@ public final class FrameworkConstants {
         return frameworkConstants;
     }
 
-    private final String apkfilepath = System.getProperty("user.dir") + "/src/test/resources/apkfiles/7.apk";
+    private final String apkfilepath = System.getProperty("user.dir") + "/src/test/resources/apkfiles/NimiKash.apk";
     private final String configfilepath = System.getProperty("user.dir")+"//src//test//resources//config//config.properties";
 
 }

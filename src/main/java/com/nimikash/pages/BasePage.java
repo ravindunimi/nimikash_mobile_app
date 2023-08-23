@@ -21,6 +21,7 @@ import java.util.List;
 
 public class BasePage {
 
+    public static String OTP;
     private Select getSelectWebElement(By by) {
         return new Select(DriverManager.getDriver().findElement(by));
     }
@@ -40,6 +41,10 @@ public class BasePage {
         ExtentLogger.pass(elementNameForReport + " - cleared Successfully.");
     }
 
+    public static void clear(By element) {
+        DriverManager.getDriver().findElement(element).clear();
+    }
+
     protected void sendKeys(By by, String value, String elementNameForReport) {
         DriverManager.getDriver().findElement(by).sendKeys(value);
         ExtentLogger.pass(elementNameForReport + " - '" + value + "' sent successfully.");
@@ -50,6 +55,7 @@ public class BasePage {
         ExtentLogger.pass(elementNameForReport + " - '" + text + "' obtained successfully.");
         return text;
     }
+
 
 //    protected void click(MobileElement element, String elementName){
 //        explicitWait(element);

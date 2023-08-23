@@ -17,7 +17,7 @@ public class LocalDriverImpl implements IDriver {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.APP, FrameworkConstants.getInstance().getApkfilepath());
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
-        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.nimikash");
+        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "com.nimi.nimikash.test.mobile");
         capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, ".MainActivity");
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "android");
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator-5554");

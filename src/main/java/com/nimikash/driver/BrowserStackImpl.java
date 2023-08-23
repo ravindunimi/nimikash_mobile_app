@@ -19,7 +19,7 @@ public class BrowserStackImpl implements IDriver{
         capabilities.setCapability("deviceName","Samsung Galaxy S22 Ultra");
         capabilities.setCapability("platformVersion","12.0");
         capabilities.setCapability("platformName","android");
-        capabilities.setCapability(MobileCapabilityType.APP,"bs://b4c07d6f5678135b4f44ef587f4849d243d235fc");
+        capabilities.setCapability(MobileCapabilityType.APP,"bs://785585fe8a7839ff353720a7d3fdf02b3d504f2b");
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");
 
         WebDriver driver = new AndroidDriver(new URL("http://hub.browserstack.com/wd/hub"), capabilities);
