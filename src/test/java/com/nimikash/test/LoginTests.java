@@ -2,8 +2,10 @@ package com.nimikash.test;
 
 import com.nimikash.api.mailTM.EmailOTP;
 import com.nimikash.data.LoginData;
+import com.nimikash.function.CommonFunctions;
 import com.nimikash.pages.HomePage;
 import com.nimikash.pages.LoginPage;
+import com.nimikash.pages.SettingsPage;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
@@ -12,21 +14,16 @@ public class LoginTests extends BaseTest {
 
     LoginData loginData = new LoginData();
 
-    @Test
-    public void login() throws MalformedURLException, InterruptedException {
 
-        LoginPage loginPage = new LoginPage();
-        EmailOTP emailOTP = new EmailOTP();
+    @Test(priority = 1)
+    public void Profile() throws MalformedURLException, InterruptedException {
+
         HomePage homePage = new HomePage();
+        SettingsPage settingsPage = new SettingsPage();
+        CommonFunctions commonFunctions = new CommonFunctions();
 
-        loginPage.enterEmail(loginData.email);
-        loginPage.enterPassword(loginData.password);
-        loginPage.clickLoginBtn();
-        emailOTP.mailTMLogin();
-        homePage.inputOTP();
-        homePage.clickVerifyBtn();
+        commonFunctions.loginToApp();
         homePage.clickSettingBtn();
-
     }
 
 //    @Test(dataProvider = "getData")

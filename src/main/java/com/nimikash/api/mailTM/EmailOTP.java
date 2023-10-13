@@ -1,11 +1,16 @@
 package com.nimikash.api.mailTM;
 
+import com.nimikash.dataBase.DatabaseConnection;
 import com.nimikash.pages.BasePage;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,6 +47,30 @@ public class EmailOTP extends BasePage {
         } else {
             System.out.println("No match found");
         }
+    }
+
+    public void verifyOTPUsingDB(){
+
+        databaseConnection();
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+
+        try (Connection connection = databaseConnection.getConnection(prop.getProperty("host"),prop.getProperty("port"),prop.getProperty("database_name"),prop.getProperty("username"),prop.getProperty("password"));
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM nk_otp WHERE \"otpUserEmail\" = ? AND \"otpActive\" = true")) {
+
+            preparedStatement.setString(1, "gdhddnbdbc@exelica.com");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                //Process the retrieved data
+                OTP = resultSet.getString("otpCode");
+                System.out.println(OTP);
+                //Process of enter otp
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

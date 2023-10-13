@@ -4,9 +4,15 @@
     <listeners>
         <listener class-name="com.nimikash.listeners.ListenersClass"/>
     </listeners>
-    <test verbose="2" preserve-order="true" name="C:/Users/94771/Documents/Mobile Automation/NimiKashMobileApp">
+<!--    <test name="Mobile automation - employee login">-->
+<!--        <classes>-->
+<!--            <class name="com.nimikash.test.LoginTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="Mobile automation - Home Tab Tests">
         <classes>
-            <class name="com.nimikash.test.LoginTests"/>
+            <class name="com.nimikash.test.HomeTabTests"/>
         </classes>
     </test>
 </suite>

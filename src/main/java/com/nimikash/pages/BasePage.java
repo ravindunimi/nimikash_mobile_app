@@ -2,7 +2,6 @@ package com.nimikash.pages;
 
 import com.nimikash.driver.DriverManager;
 import com.nimikash.reports.ExtentLogger;
-import com.nimikash.reports.ExtentManager;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.PerformsTouchActions;
 import io.appium.java_client.android.AndroidTouchAction;
@@ -11,17 +10,34 @@ import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
-import java.util.List;
+import java.util.Properties;
 
 public class BasePage {
 
+    public static Properties prop;
     public static String OTP;
+
+    public void databaseConnection() {
+        try {
+            prop = new Properties();
+            FileInputStream ip = new FileInputStream("src/test/resources/config/database.properties");
+            prop.load(ip);
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private Select getSelectWebElement(By by) {
         return new Select(DriverManager.getDriver().findElement(by));
     }

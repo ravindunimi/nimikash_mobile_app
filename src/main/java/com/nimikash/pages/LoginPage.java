@@ -15,7 +15,7 @@ public class LoginPage extends BasePage {
 
     public void clickLoginBtn() throws InterruptedException {
         click(loginBtn,"Login");
-        Thread.sleep(2000);
+        Thread.sleep(1000);
     }
     public void enterEmail(String email){
         sendKeys(emailField, email, "Email");
@@ -27,6 +27,6 @@ public class LoginPage extends BasePage {
         String newxpath = randomBtn.replace("%replaceable1%",btnName).replace("%replaceable2%",btnId);
 //        String newxpath1 = String.format(randomBtn, btnName);
         DriverManager.getDriver().findElement(By.xpath(newxpath)).click();
-        Thread.sleep(500);
+        Thread.sleep(2000);
     }
 }
